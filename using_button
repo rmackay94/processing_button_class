@@ -1,0 +1,46 @@
+  CreateButton button1; //= new CreateButton(50,50,300,50,"Click Here...");
+  CreateButton button2; //= new CreateButton(50,150,300,50,"...And Here");
+  int backcolour = 255;
+
+
+
+
+void setup() {
+  size(500,500);
+    button1 = new CreateButton(50,50,300,50,"Click Here...");
+    button2 = new CreateButton(50,150,100,100,"...And Here");
+    background(255);
+}
+
+
+
+
+void draw() {
+  background(backcolour);
+  button1.drawButton();
+  button2.drawButton();    
+}
+
+
+
+
+void mousePressed() {
+  //button1.buttonIsPressed();
+}
+
+
+
+
+void mouseClicked() {
+  button1.buttonIsClicked();
+  button2.buttonIsClicked();  
+    
+  if (button1.isButtonClicked() == true) {
+    backcolour = 0;
+    button1.unClick();
+  }     
+  if (button2.isButtonClicked() == true) {
+    backcolour = 255;
+    button2.unClick();
+  }
+}
