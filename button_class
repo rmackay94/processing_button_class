@@ -81,7 +81,9 @@ class CreateButton {
       if (mouseX > xPosition && mouseX < xPosition + buttonWidth && mouseY > yPosition && mouseY < yPosition + buttonHeight) {
         buttonPressed = true;
       }
+    } else {
+      buttonPressed = false;
     }
   }
-
+  
 }
