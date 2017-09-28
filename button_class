@@ -41,7 +41,7 @@ class CreateButton {
   void drawButton() {
     
     buttonIsPressed();
-    if (buttonPressed == true) {
+    if (buttonIsPressed() == true) {
       strokeWeight(5);
     } else {
       strokeWeight(1);
@@ -76,14 +76,16 @@ class CreateButton {
   }
   
   
-  void buttonIsPressed() {
+  boolean buttonIsPressed() {
+    boolean i = false;
     if (mousePressed == true) {
       if (mouseX > xPosition && mouseX < xPosition + buttonWidth && mouseY > yPosition && mouseY < yPosition + buttonHeight) {
-        buttonPressed = true;
+        i = true;
       }
     } else {
-      buttonPressed = false;
+      i = false;
     }
+    return i;
   }
   
 }
