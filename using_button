@@ -24,12 +24,13 @@ void draw() {
 
 
 
+
 void mouseClicked() {
   button1.buttonIsClicked();
   button2.buttonIsClicked();  
     
   if (button1.isButtonClicked() == true) {
-    backcolour = 0;
+    backcolour = 100;
     button1.unClick();
   }     
   if (button2.isButtonClicked() == true) {
