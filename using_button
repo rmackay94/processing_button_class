@@ -24,13 +24,6 @@ void draw() {
 
 
 
-void mousePressed() {
-  //button1.buttonIsPressed();
-}
-
-
-
-
 void mouseClicked() {
   button1.buttonIsClicked();
   button2.buttonIsClicked();  
