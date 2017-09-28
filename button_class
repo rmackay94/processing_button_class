@@ -1,0 +1,71 @@
+class CreateButton {
+  
+  int xPosition;
+  int yPosition;
+  int buttonWidth;
+  int buttonHeight;
+  String buttonText;
+  boolean buttonClicked = false;
+  
+  CreateButton(int xPosition2, int yPosition2, int buttonWidth2, int buttonHeight2, String buttonText2) {    
+    xPosition = xPosition2;
+    yPosition = yPosition2;
+    buttonWidth = buttonWidth2;
+    buttonHeight = buttonHeight2;
+    buttonText = buttonText2;
+         
+    //int i = 255/buttonHeight;  //change in colour
+    //int j = 0;      //height to be drawn
+    //int k = 255;           //colour to be drawn    
+    //while (j <= buttonHeight) {
+    //  noStroke();
+    //  fill(0,0,255,k);
+    //  rect(xPosition, yPosition + j, buttonWidth, buttonHeight - j);
+    //  j = j + 1;
+    //  k = k - i;
+    //}
+        
+    rectMode(CORNER);
+    stroke(0);
+    fill(173,216,230);
+    rect(xPosition, yPosition, buttonWidth, buttonHeight);
+    textAlign(CENTER);
+    fill(0);
+    int textXPosition = xPosition + (buttonWidth/2);
+    int textYPosition = (yPosition + (buttonHeight/2))+5;
+    text(buttonText,textXPosition,textYPosition);        
+  }
+  
+  // If mouse is over button, marks that the button has been clicked
+  void buttonIsClicked() {
+    if (mouseX > xPosition && mouseX < xPosition + buttonWidth && mouseY > yPosition && mouseY < yPosition + buttonHeight) {
+      buttonClicked = true;
+    }
+  }
+  
+  // returns true if button has been clicked otherwise returns false
+  boolean isButtonClicked() {
+    return buttonClicked;
+  }
+  
+  
+  // Method to draw button
+  void drawButton() {
+    rectMode(CORNER);
+    stroke(0);
+    fill(173,216,230);
+    rect(xPosition, yPosition, buttonWidth, buttonHeight);
+    textAlign(CENTER);
+    fill(0);
+    int textXPosition = xPosition + (buttonWidth/2);
+    int textYPosition = (yPosition + (buttonHeight/2))+5;
+    text(buttonText,textXPosition,textYPosition);    
+  }
+  
+  
+  // Resets clicked. if not used acts like button is held down.
+  void unClick() {
+    buttonClicked = false;
+  }
+
+}
