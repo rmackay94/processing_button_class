@@ -1,92 +1,132 @@
-class CreateButton {
+class Button implements ButtonInterface{
   
   int xPosition;
   int yPosition;
   int buttonWidth;
   int buttonHeight;
   String buttonText;
-  boolean buttonClicked = false;
-  int[] buttonColour = {173,216,230};
+  boolean buttonIsClicked;
+  color buttonColour;
   boolean buttonPressed;
+  boolean buttonIsEnabled;
+  boolean buttonIsVisible;
   
   // values provided are stored above
-  CreateButton(int xPosition2, int yPosition2, int buttonWidth2, int buttonHeight2, String buttonText2) {    
-    xPosition = xPosition2;
-    yPosition = yPosition2;
-    buttonWidth = buttonWidth2;
-    buttonHeight = buttonHeight2;
-    buttonText = buttonText2;
-            
-    drawButton();        
+  Button() {  
+    
+    xPosition = 0;
+    yPosition = 0;
+    buttonWidth = 0;
+    buttonHeight = 0;
+    buttonText = "";
+    buttonPressed = false;
+    buttonIsClicked = false;
+    buttonColour = color(255,255,255,255);
+    buttonIsEnabled = false;
+    buttonIsVisible = false;
   }
   
   
+  void setBounds(int newX, int newY, int newWidth, int newHeight) {
+    xPosition = newX;
+    yPosition = newY;
+    buttonWidth = newWidth;
+    buttonHeight = newHeight;    
+  }
+  
+  void setText(String buttonText2) {
+    buttonText = buttonText2;
+  }
+  
+  void setColour(int red, int green, int blue, int transparity) {
+    buttonColour = color(red,green,blue,transparity);
+  }
   
   
   // If mouse is over button, marks that the button has been clicked
-  void buttonIsClicked() {
-    if (mouseX > xPosition && mouseX < xPosition + buttonWidth && mouseY > yPosition && mouseY < yPosition + buttonHeight) {
-      buttonClicked = true;
+  boolean buttonClicked(int xCoord, int yCoord) {
+    if (xCoord > xPosition && xCoord < xPosition + buttonWidth && yCoord > yPosition && yCoord < yPosition + buttonHeight && buttonIsEnabled == true) {
+      buttonIsClicked = true;      
     }
+    return buttonIsClicked;
   }
   
   
   
   // returns true if button has been clicked otherwise returns false
   boolean isButtonClicked() {
-    return buttonClicked;
+    return buttonIsClicked;
   }
   
   
   // Method to draw button
-  void drawButton() {
-    
-    buttonIsPressed();
-    if (buttonIsPressed() == true) {
-      strokeWeight(5);
-    } else {
-      strokeWeight(1);
-    }
-    rectMode(CORNER);
-    stroke(0);
-    fill(buttonColour[0],buttonColour[1],buttonColour[2]);
-    rect(xPosition, yPosition, buttonWidth, buttonHeight);
-    textAlign(CENTER);
-    fill(0);
-    int textXPosition = xPosition + (buttonWidth/2);
-    int textYPosition = (yPosition + (buttonHeight/2))+5;
-    text(buttonText,textXPosition,textYPosition);  
-    
-    //creating a colour gradient
-    //int i = 255/buttonHeight;  //change in colour
-    //int j = 0;      //height to be drawn
-    //int k = 255;           //colour to be drawn    
-    //while (j <= buttonHeight) {
-    //  noStroke();
-    //  fill(0,0,255,k);
-    //  rect(xPosition, yPosition + j, buttonWidth, buttonHeight - j);
-    //  j = j + 1;
-    //  k = k - i;
-    //} 
+  void paint() {
+    if ( buttonIsVisible == true) {
+      buttonIsPressed(mouseX, mouseY);
+      if (buttonIsPressed(mouseX, mouseY) == true) {
+        strokeWeight(5);
+      } else {
+        strokeWeight(1);
+      }
+      rectMode(CORNER);
+      stroke(0);
+      fill(buttonColour);
+      rect(xPosition, yPosition, buttonWidth, buttonHeight);
+      textAlign(CENTER);
+      fill(0);
+      int textXPosition = xPosition + (buttonWidth/2);
+      int textYPosition = (yPosition + (buttonHeight/2))+5;
+      text(buttonText,textXPosition,textYPosition);
+    }    
   }
   
   
-  // Resets clicked. if not used acts like button is held down.
+  // Resets clicked. if not used acts like button is held down (toggle?).
   void unClick() {
-    buttonClicked = false;
+    buttonIsClicked = false;
   }
   
   
-  boolean buttonIsPressed() {
+  boolean buttonIsPressed(int xCoord, int yCoord) {
     boolean i = false;
     if (mousePressed == true) {
-      if (mouseX > xPosition && mouseX < xPosition + buttonWidth && mouseY > yPosition && mouseY < yPosition + buttonHeight) {
+      if (xCoord > xPosition && xCoord < xPosition + buttonWidth && yCoord > yPosition && yCoord < yPosition + buttonHeight && buttonIsEnabled == true) {
         i = true;
       }
     } else {
       i = false;
     }
-    return i;
+    
+    if (buttonIsEnabled == true) {
+      return i;
+    } else {
+      return false;
+    }
+  }
+  
+  void setSize (int newWidth, int newHeight) {
+    buttonWidth = newWidth;
+    buttonHeight = newHeight; 
+  }
+    
+  void setEnabled (boolean isEnabled) {
+    buttonIsEnabled = isEnabled;      
+  }
+  
+  void setVisible2 (boolean isVisible) {
+    buttonIsVisible = isVisible;
+  }
+  
+  boolean isVisible2() {
+    return buttonIsVisible;
+  }
+  
+  String getText() {
+    return buttonText;
+  }
+  
+  boolean getEnabled() {
+    return buttonIsEnabled;
   }
   
 }
