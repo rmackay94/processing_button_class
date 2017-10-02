@@ -22,6 +22,7 @@ class CreateButton {
   
   
   
+  
   // If mouse is over button, marks that the button has been clicked
   void buttonIsClicked() {
     if (mouseX > xPosition && mouseX < xPosition + buttonWidth && mouseY > yPosition && mouseY < yPosition + buttonHeight) {
