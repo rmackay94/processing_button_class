@@ -1,0 +1,17 @@
+interface ButtonInterface
+{
+  void paint(); 
+  
+  boolean buttonClicked (int xCoord, int yCoord); 
+
+  void setBounds (int newX, int newY, int newWidth, int newHeight); 
+  void setSize (int newWidth, int newHeight); 
+  
+  void setVisible2 (boolean isVisible);
+  void setText (String newText);  
+  void setEnabled (boolean isEnabled); 
+
+  boolean isVisible2();
+  String getText();
+  boolean getEnabled();
+}
