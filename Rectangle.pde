@@ -59,11 +59,20 @@ class Rectangle implements RectangleInterface{
   }
   
   void setWidth (int newWidth) {
-    rectangleWidth = newWidth; 
+    if (newWidth < 0) {
+      println("Error: width set to less than 0");
+    } else {
+      rectangleWidth = newWidth;
+    }
   }
   
   void setHeight (int newHeight) {
-    rectangleHeight = newHeight; 
+    
+    if (newHeight < 0) {
+      println("Error: height set to less than 0");
+    } else {
+      rectangleHeight = newHeight;
+    }
   }
   
   Coordinate getCenter() {
@@ -75,21 +84,21 @@ class Rectangle implements RectangleInterface{
   }
   
   void trimRight(int trimBy) {
-    rectangleWidth = rectangleWidth - trimBy;
+    setWidth(rectangleWidth - trimBy);
   }
   
   void trimLeft(int trimBy) {
-    rectangleCoords.modifyX(trimBy*-1);
-    rectangleWidth = rectangleWidth - trimBy;
+    rectangleCoords.modifyX(trimBy);
+    setWidth(rectangleWidth - trimBy);
   }
   
   void trimBottom(int trimBy) {
-    rectangleHeight = rectangleHeight - trimBy;
+    setHeight(rectangleHeight - trimBy);
   }
   
     void trimTop(int trimBy) {
-    rectangleCoords.modifyY(trimBy*-1);
-    rectangleHeight = rectangleHeight - trimBy;
+    rectangleCoords.modifyY(trimBy);
+    setHeight(rectangleHeight - trimBy);
   }
   
   void setSizeWithKeepingCenter(int newWidth, int newHeight) {
@@ -129,7 +138,7 @@ class Rectangle implements RectangleInterface{
   }
   
   void moveDownBy(int moveBy) {
-    rectangleCoords.modifyY(moveBy*-1);
+    rectangleCoords.modifyY(moveBy);
   }
   
   
@@ -144,7 +153,9 @@ class Rectangle implements RectangleInterface{
   
   
   
-  
-  
+  void paint() {
+      rectMode(CORNER);
+      rect(getX(), getY(), getWidth(), getHeight());
+  }
   
 }

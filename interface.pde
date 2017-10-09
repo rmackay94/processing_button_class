@@ -63,6 +63,7 @@ interface RectangleInterface {
   void moveDownBy(int moveBy);
   
   boolean withinRectangle(int xCoord, int yCoord);
+  void paint();
 }
 
 

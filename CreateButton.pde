@@ -79,10 +79,9 @@ class Button implements ButtonInterface{
       } else {
         strokeWeight(1);
       }
-      rectMode(CORNER);
       stroke(0);
       fill(buttonColour);
-      rect(bounds.getX(), bounds.getY(), bounds.getWidth(), bounds.getHeight());
+      bounds.paint();
       textAlign(CENTER,CENTER);
       fill(0);
       Coordinate textCoords = new Coordinate(bounds.getCenter());

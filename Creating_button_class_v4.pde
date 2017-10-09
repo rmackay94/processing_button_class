@@ -3,7 +3,7 @@
  Student No. 16003059
  HND Compter Science
  
- 06/10/2017
+ 09/10/2017
  Object Oriented Programming-Button class
  
  Adding Rectangle and Coordinate classes
@@ -20,6 +20,16 @@
   Button button7;
   
   Button button8;
+  
+  Button button9;
+  Button button10;
+  Button button11;
+  Button button12;
+  Button button13;
+  Button button14;
+  Button button15;
+  Button button16;
+  Rectangle movingRectangle;
   
   int backColour;
   int lastBackColour;
@@ -76,6 +86,16 @@ void setup() {
       button7.setVisible2(true);
       
      button8 = new Button(new Rectangle(90,30,new Coordinate(600,50)), "Increase Size", color(147, 153, 200, 255), true, true);
+     
+     button9 = new Button(new Rectangle(90,30,new Coordinate(650,100)), "Move Up", color(255,100,100,255), true, true);
+     button10 = new Button(new Rectangle(90,30,new Coordinate(650,200)), "Move Down", color(255,100,100,255), true, true);
+     button11 = new Button(new Rectangle(90,30,new Coordinate(600,150)), "Move Left", color(255,100,100,255), true, true);
+     button12 = new Button(new Rectangle(90,30,new Coordinate(700,150)), "Move Right", color(255,100,100,255), true, true);
+     button13 = new Button(new Rectangle(90,30,new Coordinate(700,250)), "Grow", color(255,100,100,255), true, true);
+     button14 = new Button(new Rectangle(90,30,new Coordinate(600,250)), "Shrink", color(255,100,100,255), true, true);
+     button15 = new Button(new Rectangle(90,30,new Coordinate(700,300)), "Trim Left", color(100,255,100,255), true, true);
+     button16 = new Button(new Rectangle(90,30,new Coordinate(600,300)), "Trim Top", color(100,255,100,255), true, true);
+     movingRectangle = new Rectangle(90,30,new Coordinate(650,600));
       
       backColour = 255;
       lastBackColour = 255;
@@ -112,6 +132,19 @@ void draw() {
   button6.paint();
   button7.paint();
   button8.paint();
+  button9.paint();
+  button10.paint();
+  button11.paint();
+  button12.paint();
+  button13.paint();
+  button14.paint();
+  button15.paint();
+  button16.paint();
+  
+  strokeWeight(1);
+  stroke(0);
+  fill(0);
+  movingRectangle.paint();
 }
 
 
@@ -165,5 +198,38 @@ void mouseClicked() {
   
   if (button8.buttonClicked(mouseX, mouseY) == true) {
     button8.bounds.setSizeWithKeepingCenter(150, 60);
+  }
+  
+  
+  if (button9.buttonClicked(mouseX, mouseY) == true) {
+    movingRectangle.moveUpBy(5);
+  } 
+  
+  if (button10.buttonClicked(mouseX, mouseY) == true) {
+    movingRectangle.moveDownBy(5);
+  } 
+  
+  if (button11.buttonClicked(mouseX, mouseY) == true) {
+    movingRectangle.moveLeftBy(5);
+  } 
+  
+  if (button12.buttonClicked(mouseX, mouseY) == true) {
+    movingRectangle.moveRightBy(5);
+  } 
+  
+  if (button13.buttonClicked(mouseX, mouseY) == true) {
+    movingRectangle.grow(5);
+  }
+  
+  if (button14.buttonClicked(mouseX, mouseY) == true) {
+    movingRectangle.shrink(5);
+  }
+  
+  if (button15.buttonClicked(mouseX, mouseY) == true) {
+    movingRectangle.trimLeft(5);
+  }
+  
+  if (button16.buttonClicked(mouseX, mouseY) == true) {
+    movingRectangle.trimTop(5);
   }
 }
